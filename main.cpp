@@ -17,7 +17,6 @@ public:
         arr = new T[1];
         capacity = 1;
         current =0;
-
     }
     ~ vectorClass(){
         delete [] arr;
@@ -75,26 +74,17 @@ int fact(int n){
     }
 }
 int main(){
-    
     auto start = high_resolution_clock::now();
-    
+
     int n;
     cout << "Enter factorial number: " << endl;
     cin >> n;
-   vectorClass<int> List = listAdd(n);
-   vectorClass<int> Result;
-   List.print();
-   cout << "Result: " << fact(n) <<endl ;
-   if(n<= 10){
-    int counter = fact(n);
-    
-    Result.print();
-   }
+    vectorClass<int> List = listAdd(n);
+    List.print();
 
+    cout << fact(n) <<endl;
 
-
-
-
+    /*----------------timer----------------*/
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start);
     cout << duration.count() << endl;
