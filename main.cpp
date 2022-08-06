@@ -90,6 +90,7 @@ vectorClass<int> factBig(vectorClass<int> v, int n, vectorClass<int> result){
         cout << "direkt result degeri dondu" <<endl;
     }else{
         int sayac =0;
+        int sayac2 =0;
         cout << "else icerisine girdi" << " result degeri: " << result.get(0) << endl;
         int numberCatch = v.get(n);
         cout <<"numberCatch: " <<numberCatch << endl;
@@ -98,6 +99,7 @@ vectorClass<int> factBig(vectorClass<int> v, int n, vectorClass<int> result){
         cout <<"secondNumber: " <<secondNumber << endl;
         vectorClass<int> counter ;
         vectorClass<int> empty;
+        vectorClass<int> third ;
         int place = decimalP(secondNumber);
         for(int i = place; i >0 ; i--){
 
@@ -127,39 +129,63 @@ vectorClass<int> factBig(vectorClass<int> v, int n, vectorClass<int> result){
                 cout<< "result: ";
                 result.print();
             }else if (sayac == 1){
-                sayac++;
+                if(sayac2 == 1){
                 empty.push(result.get(0));
-                cout<< "empty: ";
+                 cout<< "empty: ";
                 empty.print();
                 result.pop();
-                cout<< "result: ";
                 result.print();
-                result.push((empty.get(0))+(numberCatch*counter.get(k)));
-                cout<< "result: ";
+                cout << "third this: ";
+                third.print();
+                cout <<"counter : ";
+                counter.print();
+                result.push((empty.get(0))+(third.get(0)*counter.get(k)));
+                cout <<"result: " ;
                 result.print();
                 empty.pop();
-                cout<< "empty: ";
-                empty.print();
-            }else{
-                sayac++;
-                empty.push(result.get(0));
-                cout<< "empty: ";
-                empty.print();
-                result.pop();
-                cout<< "result: ";
-                result.print();
-                vectorClass<int> third ;
-                third.push((empty.get(0)*counter.get(k)));
-                empty.pop();
-                result.push(third.get(0));  
                 third.pop();
-                cout << "result :---";
+                
+                }else{
+                sayac++;
+                empty.push(result.get(0));
+                cout<< "empty: ";
+                empty.print();
+                result.pop();
+                cout<< "result: ";
+                result.push((empty.get(0))+(numberCatch*counter.get(k)));
                 result.print();
+                empty.pop();
+                cout<< "empty: ";
+                empty.print();
+                }
+            }else{
+                sayac2++;
+                sayac++;
+                empty.push(result.get(0));
+                cout<< "empty: ";
+                empty.print();
+                result.pop();
+                cout<< "result: ";
+                result.print();
+                third.push(empty.get(0));
+                cout <<"third : ";
+                third.print();
+                result.push((third.get(0)*counter.get(k)));
+                empty.pop(); 
+                cout << "result : ";
+                result.print();
+                cout <<"sayac: " <<sayac <<endl;
             }
         }
-        return factBig(v,n-2,result);
+        
+        if(n > 1){
+            cout << "end of n : " <<n <<endl;
+            return factBig(v,n-1,result);
+        }
+        else{
+            return result;
+        }
     }
-    return result;
 }
 
 int main(){
