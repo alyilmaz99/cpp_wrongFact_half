@@ -1,5 +1,7 @@
-#include <Arraylist.hpp>
+
 #include <iostream>
+#include <fstream>
+#include "ArrayList.hpp"
 
 Arraylist::Arraylist() {
     length = 0;
@@ -18,7 +20,7 @@ void Arraylist::reverse(int newCapacity) {
     items = tmp; 
     capacity = newCapacity; 
 }
-void Arraylist::add(char item) {
+void Arraylist::push(char item) {
 
     insert(length, item);
 }
@@ -26,11 +28,17 @@ int Arraylist::size() const
 {
     return length;
 }
+char Arraylist::get(int i) {
+    if (i < 0 || i >= length) {
+        throw "out of index";
+    }
+    return items[i];
+}
 
 void Arraylist::clear() {
     length = 0;
 }
-
+friend ofstream& operator<<(ofstream& myfile,BigDecimal& right);//
 Arraylist::~Arraylist() {
 
     if (items != NULL) {

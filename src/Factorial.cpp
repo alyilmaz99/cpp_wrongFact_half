@@ -1,6 +1,14 @@
+#include <iostream>
+#include <string>
+#include <list>
+#include <bits/stdc++.h>
+#include <chrono>
+#include "ArrayList.hpp"
+using namespace std;
+using namespace std::chrono;
 
-vectorClass listAdd(int n){
-    vectorClass v;
+Arraylist listAdd(int n){
+    Arraylist v;
     for(int i =1 ; i <=n ; i++){
         v.push(i);
     }
@@ -22,7 +30,7 @@ int decimalP(int number){
    return a;
 
 }
-vectorClass factBig(vectorClass v, int n, vectorClass result){
+Arraylist factBig(Arraylist v, int n, Arraylist result){
     cout <<"n : " << n << endl;
     
     if(n==0){
@@ -32,14 +40,14 @@ vectorClass factBig(vectorClass v, int n, vectorClass result){
         int sayac =0;
         int sayac2 =0;
         cout << "else icerisine girdi" << " result degeri: " << result.get(0) << endl;
-        int numberCatch = v.get(n);
+        int numberCatch = v.get(0);
         cout <<"numberCatch: " <<numberCatch << endl;
-        v.pop();
+        v.clear();
         int secondNumber = v.get(n-1);
         cout <<"secondNumber: " <<secondNumber << endl;
-        vectorClass counter ;
-        vectorClass empty;
-        vectorClass third ;
+        Arraylist counter ;
+        Arraylist empty;
+        Arraylist third ;
         int place = decimalP(secondNumber);
         for(int i = place; i >0 ; i--){
 
@@ -51,69 +59,41 @@ vectorClass factBig(vectorClass v, int n, vectorClass result){
                 int catchs = (secondNumber / numberBasamak);
                cout <<"catchs: " << catchs <<endl;
                counter.push(catchs);
-               counter.print();
                }else{
                 int catchs = (secondNumber / numberBasamak);
                cout <<"catchs: " << catchs <<endl;
                secondNumber = secondNumber -(catchs*numberBasamak);
                 cout <<"secondNumber" << secondNumber <<endl;
                 counter.push(catchs);
-                counter.print();
                }
         }
-        for(int k = 0; k < counter.getcapacity(); k++){
+        for(int k = 0; k < counter.size(); k++){
             cout << "for2 icerisine girdi" <<endl;
             if(result.get(0) == 0){
                 sayac++;
                 result.push(counter.get(k)*numberCatch);
-                cout<< "result: ";
-                result.print();
             }else if (sayac == 1){
                 if(sayac2 == 1){
                 empty.push(result.get(0));
-                 cout<< "empty: ";
-                empty.print();
-                result.pop();
-                result.print();
-                cout << "third this: ";
-                third.print();
-                cout <<"counter : ";
-                counter.print();
+                result.clear();
                 result.push((empty.get(0))+(third.get(0)*counter.get(k)));
-                cout <<"result: " ;
-                result.print();
-                empty.pop();
-                third.pop();
-                
+                empty.clear();
+                third.clear();
                 }else{
                 sayac++;
                 empty.push(result.get(0));
-                cout<< "empty: ";
-                empty.print();
-                result.pop();
-                cout<< "result: ";
+                result.clear();
                 result.push((empty.get(0))+(numberCatch*counter.get(k)));
-                result.print();
-                empty.pop();
-                cout<< "empty: ";
-                empty.print();
+                empty.clear();
                 }
             }else{
                 sayac2++;
                 sayac++;
                 empty.push(result.get(0));
-                cout<< "empty: ";
-                empty.print();
-                result.pop();
-                cout<< "result: ";
-                result.print();
+                result.clear();
                 third.push(empty.get(0));
-                cout <<"third : ";
-                third.print();
                 result.push((third.get(0)*counter.get(k)));
-                empty.pop(); 
-                cout << "result : ";
-                result.print();
+                empty.clear(); 
                 cout <<"sayac: " <<sayac <<endl;
             }
         }
@@ -123,7 +103,7 @@ vectorClass factBig(vectorClass v, int n, vectorClass result){
             return factBig(v,n-1,result);
         }
         else{
-            result.pop();
+            result.clear();
             result.push(third.get(0));
             return result;
         }

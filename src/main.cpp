@@ -1,9 +1,18 @@
+/**
+* @file Dosya adı
+* @description Programınızın açıklaması ne yaptığına dair.
+* @course Dersi aldığınız eğitim türü ve grup
+* @assignment Kaçıncı ödev olduğu
+* @date Kodu oluşturduğunuz Tarih
+* @author Kodu Yazan
+*/
 #include <iostream>
 #include <string>
 #include <list>
 #include <bits/stdc++.h>
 #include <chrono>
-#include <ArrayList.hpp>
+#include "ArrayList.cpp"
+#include "Factorial.cpp"
 using namespace std;
 using namespace std::chrono;
 
@@ -14,15 +23,14 @@ int main(){
     int n;
     cout << "Enter factorial number: ";
     cin >> n;
-    /*
-    vectorClass List = listAdd(n);
-    List.print();
-    vectorClass Result ;
-    factBig(List, n, Result);*/
+    
+    Arraylist List = listAdd(n);
+    List.size();
+    Arraylist Result ;
+    factBig(List, n, Result);
 
     cout <<"Result is : ";
-    arr = new ArrayList();
-
+    Result.get(0);
     /*----------------timer----------------*/
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start);
